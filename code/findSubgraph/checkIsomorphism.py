@@ -1,0 +1,30 @@
+import networkx as nx
+
+def read_graph_from_tsv(file_path):
+    G = nx.Graph()
+    with open(file_path, 'r') as file:
+        lines = file.readlines()
+        for line in lines:
+            parts = line.strip().split()
+            if len(parts) >= 2:
+                u, v = map(int, parts[:2])  # Giữ lại chỉ số đỉnh
+                weight = float(parts[-1].split(':')[-1].strip('}'))  # Chuyển đổi trọng số từ chuỗi thành số
+                G.add_edge(u, v, weight=weight)
+    return G
+
+# Đường dẫn đến file TSV cục bộ
+file_path1 = 'Graph.edgelist'
+file_path2 = 'subGraph.edgelist'
+
+# Đọc đồ thị từ file TSV
+my_graph = read_graph_from_tsv(file_path1)
+pattern_graph = read_graph_from_tsv(file_path2)
+
+# Tiếp tục xử lý subgraph isomorphism như trong mã gốc của bạn
+subgraph_isomorphisms = list(nx.algorithms.isomorphism.GraphMatcher(my_graph, pattern_graph).subgraph_isomorphisms_iter())
+
+# Kiểm tra xem có đồ thị con đồng đẳng hay không
+if subgraph_isomorphisms:
+    print("Có một đồ thị con đồng đẳng.")
+else:
+    print("Không tìm thấy đồ thị con đồng đẳng.")

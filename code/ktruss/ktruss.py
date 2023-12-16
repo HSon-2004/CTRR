@@ -4,7 +4,6 @@ from scipy.sparse import csr_matrix
 from scipy.sparse import csc_matrix
 from scipy.sparse import coo_matrix
 from scipy.sparse import lil_matrix
-from time import perf_counter as time
 import os, sys, argparse
 import scipy.io as sio
 
@@ -45,17 +44,12 @@ def ktruss (inc_mat_file,k):
     
     ii=StrArrayRead(inc_mat_file) # read file
     
-    startTime=time() # time start process
-    
     E = csr_matrix((ii[:,2], (ii[:,0]-1, ii[:,1]-1)), shape=(int(max(ii[:,0])), int(max(ii[:,1]))))
-
-    
-    readTime=time()
     
     tmp=np.transpose(E)*E   # A=(E^T)E
     sizeX,sizeY=np.shape(tmp)
     
-    print ("Time to Read Data:  " + str(readTime-startTime) + "s"+"\n")
+    print ("Read Data\n")
     print ("Computing k-truss")
     tmp.setdiag(np.zeros(sizeX),k=0)
 
@@ -79,8 +73,7 @@ def ktruss (inc_mat_file,k):
         s=csr_matrix(((R==2).astype(float)).sum(axis=1))
         xc= (s >=k-2).astype(int)
 
-    ktrussTime=time()
-    print ("Time to Compute k=truss:  " + str(ktrussTime-startTime) + "s")
+    E=np.transpose(E)
     print("Ktruss matrix:")
     print(E.toarray()) # print ktruss matrix
 
