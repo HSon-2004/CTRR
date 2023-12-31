@@ -261,13 +261,31 @@ function highlightFilter(filter) {
                             >
                                 <option selected>Select a Node by ID</option>
                                 
-                                    <option value="1">1</option>
-                                
                                     <option value="2">2</option>
+                                
+                                    <option value="1">1</option>
                                 
                                     <option value="3">3</option>
                                 
                                     <option value="4">4</option>
+                                
+                                    <option value="5">5</option>
+                                
+                                    <option value="6">6</option>
+                                
+                                    <option value="13">13</option>
+                                
+                                    <option value="8">8</option>
+                                
+                                    <option value="7">7</option>
+                                
+                                    <option value="9">9</option>
+                                
+                                    <option value="10">10</option>
+                                
+                                    <option value="11">11</option>
+                                
+                                    <option value="12">12</option>
                                 
                             </select>
                         </div>
@@ -489,8 +507,8 @@ function highlightFilter(filter) {
                   
 
                   // parsing and collecting nodes and edges from the python
-                  nodes = new vis.DataSet([{"color": "red", "font": {"color": "750px"}, "id": 1, "label": 1, "shape": "dot", "size": 10}, {"color": "red", "font": {"color": "750px"}, "id": 2, "label": 2, "shape": "dot", "size": 10}, {"color": "red", "font": {"color": "750px"}, "id": 3, "label": 3, "shape": "dot", "size": 10}, {"color": "#00BFFF", "font": {"color": "750px"}, "id": 4, "label": 4, "shape": "dot", "size": 10}]);
-                  edges = new vis.DataSet([{"color": "red", "from": 1, "to": 2, "width": 1}, {"color": "red", "from": 1, "to": 3, "width": 1}, {"color": "#00BFFF", "from": 1, "to": 4, "width": 1}, {"color": "red", "from": 2, "to": 3, "width": 1}, {"color": "#00BFFF", "from": 3, "to": 4, "width": 1}]);
+                  nodes = new vis.DataSet([{"color": "red", "font": {"color": "750px"}, "id": 2, "label": 2, "shape": "dot", "size": 10}, {"color": "red", "font": {"color": "750px"}, "id": 1, "label": 1, "shape": "dot", "size": 10}, {"color": "red", "font": {"color": "750px"}, "id": 3, "label": 3, "shape": "dot", "size": 10}, {"color": "red", "font": {"color": "750px"}, "id": 4, "label": 4, "shape": "dot", "size": 10}, {"color": "red", "font": {"color": "750px"}, "id": 5, "label": 5, "shape": "dot", "size": 10}, {"color": "red", "font": {"color": "750px"}, "id": 6, "label": 6, "shape": "dot", "size": 10}, {"color": "#00BFFF", "font": {"color": "750px"}, "id": 13, "label": 13, "shape": "dot", "size": 10}, {"color": "#00BFFF", "font": {"color": "750px"}, "id": 8, "label": 8, "shape": "dot", "size": 10}, {"color": "#00BFFF", "font": {"color": "750px"}, "id": 7, "label": 7, "shape": "dot", "size": 10}, {"color": "#00BFFF", "font": {"color": "750px"}, "id": 9, "label": 9, "shape": "dot", "size": 10}, {"color": "#00BFFF", "font": {"color": "750px"}, "id": 10, "label": 10, "shape": "dot", "size": 10}, {"color": "#00BFFF", "font": {"color": "750px"}, "id": 11, "label": 11, "shape": "dot", "size": 10}, {"color": "#00BFFF", "font": {"color": "750px"}, "id": 12, "label": 12, "shape": "dot", "size": 10}]);
+                  edges = new vis.DataSet([{"color": "red", "from": 2, "to": 1, "width": 1}, {"color": "red", "from": 1, "to": 3, "width": 1}, {"color": "red", "from": 1, "to": 4, "width": 1}, {"color": "red", "from": 1, "to": 5, "width": 1}, {"color": "red", "from": 1, "to": 6, "width": 1}, {"color": "#00BFFF", "from": 1, "to": 13, "width": 1}, {"color": "#00BFFF", "from": 8, "to": 7, "width": 1}, {"color": "#00BFFF", "from": 7, "to": 9, "width": 1}, {"color": "#00BFFF", "from": 7, "to": 10, "width": 1}, {"color": "#00BFFF", "from": 7, "to": 11, "width": 1}, {"color": "#00BFFF", "from": 7, "to": 12, "width": 1}, {"color": "#00BFFF", "from": 7, "to": 13, "width": 1}]);
 
                   nodeColors = {};
                   allNodes = nodes.get({ returnType: "Object" });

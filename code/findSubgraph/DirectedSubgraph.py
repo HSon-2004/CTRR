@@ -1,14 +1,13 @@
 import networkx as nx
-import math
 from networkx.algorithms import isomorphism
 from pyvis.network import Network
 from IPython.display import display, HTML
-
+import ast
 
 
 #==========================[READ FILE FUNCTION]============================#
 def read_graph_from_tsv(file_path):
-    G = nx.Graph()
+    G = nx.DiGraph()
     with open(file_path, 'r') as file:
         lines = file.readlines()
         for line in lines:
@@ -22,8 +21,8 @@ def read_graph_from_tsv(file_path):
     return G
 #==========================================================================#
 
-file_path1 = 'testcase_1_G.edgelist' # File graph G
-file_path2 = 'testcase_1_H.edgelist' # File graph H
+file_path1 = 'testcase_G.txt' # File graph G
+file_path2 = 'testcase_H.txt' # File graph H
 
 # Read graph from file
 my_graph = read_graph_from_tsv(file_path1)
@@ -32,7 +31,7 @@ my_graph = read_graph_from_tsv(file_path1)
 pattern_graph = read_graph_from_tsv(file_path2)
 
 # Find subgraph isomorphism using NetworkX
-subgraph_isomorphisms = list(nx.algorithms.isomorphism.GraphMatcher(my_graph, pattern_graph).subgraph_isomorphisms_iter())
+subgraph_isomorphisms = list(nx.algorithms.isomorphism.DiGraphMatcher(my_graph, pattern_graph).subgraph_isomorphisms_iter())
 if (subgraph_isomorphisms):
     print("There are subgraph isomorphism")
 else:
@@ -45,22 +44,16 @@ num_nodes =pattern_graph.number_of_nodes()
 count = 0
 for subgraph in subgraph_isomorphisms:
     count += 1
-# Because the order of the nodes does not matter
-count=count/math.factorial(num_nodes) 
+    print(subgraph)
+
 # Print the number of subgraphs
 print("Number of subgraph isomorphisms:", count)
 
 # Identify nodes in a found subgraph
-pos=0
 list_nodes=[]
-subgraph=str(subgraph_isomorphisms[0])
-for i in range(num_nodes):
-    if(pos==0): 
-        pos=subgraph.find(':')
-    else:
-        pos = subgraph.find(':', pos + 1)
-    if(pos!=-1):
-        list_nodes.append(int(subgraph[pos-1]))
+subgraph_str=str(subgraph_isomorphisms[0])
+subgraph = ast.literal_eval(subgraph_str)
+list_nodes = list(subgraph.keys())
 
 # Set color the main graph the matched subgraphs 
 for i in my_graph.nodes:
@@ -84,6 +77,7 @@ net = Network(
     width="100%",
     select_menu=True,
     filter_menu=True,
+    directed=True
 )
 
 net.from_nx(my_graph)
